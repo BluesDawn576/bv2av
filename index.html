@@ -83,9 +83,9 @@
     			}
 			};
             if($('#av').prop('checked')){
-            	xhttp.open("GET", "/bilibili/data/bilidata.php?aid="+$('#hao').val(), true);
+            	xhttp.open("GET", "/data/bilidata.php?aid="+$('#hao').val(), true);//如放置在bilibili文件夹，需要修改为/bilibili/data/bilidata.php
             }else{
-            	xhttp.open("GET", "/bilibili/data/bilidata.php?bvid="+$('#hao').val(), true);
+            	xhttp.open("GET", "/data/bilidata.php?bvid="+$('#hao').val(), true);//同上
             }
             xhttp.send();
             })
