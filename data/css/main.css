@@ -1,0 +1,21 @@
+body {
+    background: #f5f5f5;
+}
+
+.center {
+    text-align: center;
+    margin: auto;
+}
+
+.margin {
+    margin: auto;
+}
+
+.width-40 {
+    width: 40%;
+}
+
+.padding {
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
