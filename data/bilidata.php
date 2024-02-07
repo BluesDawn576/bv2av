@@ -21,7 +21,7 @@ if ($aid != null && $bvid == null) {
 	$_aid = str_ireplace("av","",$aid);
 	if($_aid > 0){
 	echo "查询的av号：av" . $_aid . "<br>";
-    echo "bv号：<font color='red'>" . $bv=enc($_aid) . "</font><br>";
+    echo "bv号（算法转换）：<font color='red'>" . $bv=enc($_aid) . "</font><br>";
 	}
     $file_contents = curl_get_https('https://api.bilibili.com/x/web-interface/view?aid=' . $_aid);
     $arr = json_decode($file_contents,true);
@@ -35,6 +35,7 @@ if ($aid != null && $bvid == null) {
     }else if($arr['code'] == 0){
     	$pic = $arr['data']['pic'];
     	$title = $arr['data']['title'];
+		echo "bv号（接口获取）：<font color='red'>" . $bv=$arr['data']['bvid'] . "</font><br>";
     	echo "视频标题：" . $title . "<br>";
     	echo "UP主：" . "<a href='https://space.bilibili.com/" . $arr['data']['owner']['mid'] . "' target='_blank'>" . $arr['data']['owner']['name'] . "</a><br>"; 
     	echo "<a href='https://www.bilibili.com/video/". strip_tags($bv) ."' target='_blank'>点击跳转到该视频</a><br>";
@@ -51,7 +52,7 @@ if ($aid == null && $bvid != null) {
 		$_bvid = "BV".$bvid;
 	}
 	echo "查询的bv号：" . $_bvid . "<br>";
-    echo "av号：<font color='red'>av" . $av=dec($_bvid) . "</font><br>";
+    echo "av号（算法转换）：<font color='red'>av" . $av=dec($_bvid) . "</font><br>";
     $file_contents = curl_get_https('https://api.bilibili.com/x/web-interface/view?bvid=' . $_bvid);
     $arr = json_decode($file_contents,true);
     if($arr['code'] == -400){
@@ -64,6 +65,7 @@ if ($aid == null && $bvid != null) {
     }else if($arr['code'] == 0){
     	$pic = $arr['data']['pic'];
     	$title = $arr['data']['title'];
+		echo "av号（接口获取）：<font color='red'>av" . $av=$arr['data']['aid'] . "</font><br>";
     	echo "视频标题：" . $title . "<br>";
     	echo "UP主：" . "<a href='https://space.bilibili.com/" . $arr['data']['owner']['mid'] . "' target='_blank'>" . $arr['data']['owner']['name'] . "</a><br>"; 
     	echo "<a href='https://www.bilibili.com/video/av". strip_tags($av) ."' target='_blank'>点击跳转到该视频</a><br>";
